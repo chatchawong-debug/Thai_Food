@@ -1,0 +1,83 @@
+body {
+ font-family: Tahoma, sans-serif;
+ margin: 0;
+ background: #e0f7fa; /* สีฟ้าอ่อนมาก */
+ color: #00acc1; /* สีฟ้าอมเขียว */
+ font-size: 16px;
+}
+
+
+header {
+ background: linear-gradient(to right, #b2ebf2, #4dd0e1); /* ไล่ระดับสีจากฟ้าอ่อนไปฟ้า */
+ color: white;
+ padding: 15px;
+ text-align: center;
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* เพิ่มเงาเล็กน้อย */
+}
+
+
+header nav a {
+ margin: 0 10px;
+ color: white;
+ text-decoration: none;
+}
+
+
+header nav a:hover {
+ text-decoration: underline;
+ color: #ffffff; /* เปลี่ยนสีเมื่อ hover ให้สว่างขึ้น */
+}
+
+
+main {
+ padding: 20px;
+}
+
+
+.menu-grid {
+ display: grid;
+ grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+ gap: 15px;
+ margin-top: 20px;
+}
+
+
+.menu-card {
+ background: #fff;
+ border: 1px solid #b2ebf2;
+ border-radius: 10px;
+ padding: 15px;
+ text-align: center;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* เพิ่มเงาให้เด่นขึ้น */
+}
+
+
+.menu-card img {
+ width: 100%;
+ height: 180px;
+ object-fit: cover;
+ border-radius: 8px;
+}
+
+
+.menu-card h3 {
+ margin: 10px 0;
+ color: #26c6da;
+}
+
+
+.menu-card p {
+ font-size: 16px;
+ color: #00bcd4;
+}
+
+
+footer {
+ background: linear-gradient(to right, #4dd0e1, #b2ebf2); /* ไล่ระดับสีจากฟ้าไปฟ้าอ่อน */
+ color: white;
+ text-align: center;
+ padding: 10px;
+ margin-top: 30px;
+ font-size: 14px;
+ box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* เพิ่มเงาด้านบน */
+}
