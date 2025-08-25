@@ -11,5 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "express": "^5.1.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chatchawong-debug/Thai_Food.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chatchawong-debug/Thai_Food/issues"
+  },
+  "homepage": "https://github.com/chatchawong-debug/Thai_Food#readme"
 }
