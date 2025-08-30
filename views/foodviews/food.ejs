@@ -1,4 +1,45 @@
 <!-- /views/foodviwes/food.ejs -->
+
 <%- include('../partials/header') %>
-<h2><%= title %></h2>
+<div class="container">
+  <div class="py-3">
+    <h2><%= title %></h2>
+    <div class="table-responsive">
+      <table class="table">
+        <% if (food.length > 0) { %>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Type</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% food.forEach((food, index) => { %>
+          <tr>
+            <th scope="row"><%= food.id %></th>
+            <td>รูปภาพ</td>
+            <td><%= food.name %></td>
+            <td><%= food.des %></td>
+            <td><%= food.type_id %></td>
+            <td>
+              <a href="<%= food.id %>" class="btn btn-sm btn-success">Edit</a>
+              <a href="<%= food.id %>" onclick="return confirm('delete this list?');"class="btn btn-sm btn-danger">Delete</a>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+        <% } else { %>
+        <p class="text-center">
+          No food found. go <a href="">here</a> to add food.
+        </p>
+        <% } %>
+      </table>
+    </div>
+  </div>
+</div>
 <%- include('../partials/footer') %>
