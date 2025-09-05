@@ -11,7 +11,7 @@ exports.getTypePage = (req, res) => {
 
     // ส่งข้อมูลที่ได้ไปยังหน้า type.ejs
     res.render("foodviews/type", {
-      title: "รายการประเภทอาหาร",
+      title: "ประเภทอาหาร",
       types: result, // ส่งข้อมูลในตัวแปรชื่อ 'types'
     });
   });
@@ -19,7 +19,7 @@ exports.getTypePage = (req, res) => {
 
 exports.addTypePage = (req, res) => {
   res.render("foodviews/addType.ejs", {
-    title: "Welcome to ThaiFood | Add Type Food",
+    title: "Add Type Food",
     message: "",
   });
 };

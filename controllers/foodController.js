@@ -17,7 +17,7 @@ exports.getFoodPage = (req, res) => {
 
     // ถ้า query สำเร็จจะ render หน้า food.ejs โดยส่งค่าตัวแปรไปด้วย:
     res.render("foodviews/food", {
-      title: "รายการอาหารไทย",
+      title: "รายการอาหาร",
       food: result,
     });
   });
@@ -98,7 +98,7 @@ exports.addFoodItem = (req, res) => {
         message ="Invalid file format. Only 'gif', 'jpeg' and 'png' images are allowed.";
         res.render("foodviews/addFood.ejs", {
           message,
-          title: "Welcome to ThaiFood | Add New Food",
+          title: "Add New Food",
         });
       }
     }
