@@ -1,0 +1,62 @@
+<%- include('../partials/header') %>
+<div class="container">
+  <div class="py-3">
+    <a class="btn btn-primary mb-3" href="/food"><- back </a>
+    <h2><%= title %></h2>
+    <hr>
+
+    <% if (message != '') { %>
+    <p class="text-center text-danger"><%= message %></p>
+    <% } %> <% if (food) { %>
+
+    <form method="post" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="first_name" class="form-label">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          aria-describedby="first_name"
+          value="<%= food.name %>"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="last_name" class="form-label">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          name="des"
+          aria-describedby="last_name"
+          value="<%= food.des %>"
+          placeholder="Last Name"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label>Type</label>
+        <select name="type">
+          <% foodtype.forEach(t => { %>
+          <option value="<%= t.type_id %>" <%= t.type_id === food.type_id ? 'selected' : '' %>><%= t.name %>
+          <% }) %>
+        </select>
+      </div>
+      <div class="col-md-12 mb-3">
+        <label for="player image">Image</label>
+        <input type="file" class="form-control" name="image" />
+        <input
+          type="hidden"
+          class="form-control"
+          value="<%= food.image %>"
+          name="old_image"
+        />
+      </div>
+      <button type="submit" class="btn btn-success">Update</button>
+    </form>
+
+    <% } else { %>
+    <p class="text-center">!! not found !!</p>
+    <% } %>
+  </div>
+</div>
+<%- include('../partials/footer') %>

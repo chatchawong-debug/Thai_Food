@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<div class="container">
+  <div class="py-3">
+    <a class="btn btn-primary mb-3" href="/type"><- back</a>
+    <h2><%= title %></h2>
+    <hr>
+
+    <% if (message != '') { %>
+    <p class="text-center text-danger"><%= message %></p>
+    <% } %> <% if (type) { %>
+
+    <form action="/type/edit/<%= type.type_id %>" method="post">
+      <div class="mb-3">
+        <label for="name" class="form-label">name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="name"
+          value="<%= type.name %>"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-success">Update</button>
+    </form>
+
+    <% } else { %>
+    <p class="text-center">!! not found !!</p>
+    <% } %>
+  </div>
+</div>
+<%- include('../partials/footer') %>

@@ -78,23 +78,27 @@ main {
 .table {
   width: 100%;
   border-collapse: collapse; /* ทำให้เส้นขอบติดกัน */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* เพิ่มเงาให้เด่นขึ้น */
+  border-radius: 12px;
   overflow: hidden; /* ทำให้ border-radius มีผลกับเนื้อหาภายใน */
-  border: 1px solid #000000; /* เพิ่มเส้นขอบหลักสำหรับตารางทั้งหมด */
 }
 
 .table thead th {
-  background: #00bcd4;
+  background: linear-gradient(
+    to right,
+    #00bcd4,
+    #26c6da
+  ); /* ไล่ระดับสีที่หัวตาราง */
   color: white;
-  padding: 12px 15px;
-  text-align: left;
+  padding: 15px 20px;
+  text-align: center; /* จัดให้อยู่กึ่งกลาง */
   font-weight: bold;
-  border-bottom: 2px solid #00acc1;
+  letter-spacing: 0.5px; /* เพิ่มระยะห่างระหว่างตัวอักษร */
 }
 
 .table tbody tr {
   background-color: #ffffff;
+  transition: all 0.3s ease; /* เพิ่ม transition ให้การเปลี่ยนแปลงดูนุ่มนวล */
 }
 
 .table tbody tr:nth-of-type(even) {
@@ -103,59 +107,319 @@ main {
 
 .table tbody tr:hover {
   background-color: #e0f7fa; /* สีฟ้าอ่อนมากเมื่อเมาส์ไปชี้ */
-  box-shadow: inset 0 0 0 1px #b2ebf2; /* เพิ่มกรอบเมื่อโฮเวอร์ */
+  box-shadow: inset 5px 0 0 #4dd0e1; /* เพิ่มเส้นสีฟ้าด้านซ้ายเมื่อโฮเวอร์ */
+  transform: scale(1.01); /* ขยายแถวเล็กน้อยเมื่อโฮเวอร์ */
   cursor: pointer;
 }
 
 .table td {
-  padding: 10px 15px;
+  padding: 12px 20px;
   border-bottom: 1px solid #e0f7fa;
   color: #34495e; /* เปลี่ยนสีข้อความให้เข้มขึ้นเล็กน้อยเพื่อให้อ่านง่าย */
+  vertical-align: middle; /* จัดให้ข้อความอยู่กึ่งกลางแนวตั้ง */
+  line-height: 1.5; /* เพิ่มระยะห่างระหว่างบรรทัด */
 }
 
 /* ส่วนตกแต่งปุ่มในตาราง */
-.btn-edit,
-.btn-delete {
-  padding: 8px 12px;
+.btn {
+  padding: 8px 16px;
   border: none;
-  border-radius: 5px;
+  border-radius: 20px; /* ทำให้ปุ่มเป็นทรงรี */
   text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  font-size: 14px;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.btn-edit {
+  background-color: #4caf50; /* สีเขียว */
+  color: white;
+}
+
+.btn-edit:hover {
+  background-color: #43a047;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-delete {
+  background-color: #f44336; /* สีแดง */
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #e53935;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* ปรับแต่งรูปภาพในตารางให้สวยงามขึ้น */
 .table img {
   max-width: 80px;
   height: auto;
-  border-radius: 5px;
+  border-radius: 8px; /* เพิ่มความโค้งมนของรูปภาพ */
+  border: 2px solid #b2ebf2; /* เพิ่มเส้นขอบเล็กน้อย */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* กำหนดความกว้างเฉพาะสำหรับตารางประเภทอาหาร */
+/* กำหนดความกว้างเฉพาะสำหรับแต่ละคอลัมน์ */
 .table th:nth-child(1),
 .table td:nth-child(1) {
-  width: 5%; /* กำหนดความกว้างของคอลัมน์ ID */
+  width: 5%; /* ID */
+  text-align: center;
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+  width: 10%; /* Image */
+  text-align: center;
 }
 
 .table th:nth-child(3),
 .table td:nth-child(3) {
-  width: 20%; /* กำหนดความกว้างของคอลัมน์ Action */
-  text-align: center; /* จัดให้อยู่กึ่งกลาง */
+  width: 15%; /* Name */
+  text-align: left;
+  font-weight: bold;
 }
 
-.table td:nth-child(3) a {
-  margin: 0 5px; /* เพิ่มระยะห่างระหว่างปุ่ม */
+.table th:nth-child(4),
+.table td:nth-child(4) {
+  width: 45%; /* Description */
+  text-align: left;
 }
 
-/* จัดตำแหน่งข้อความทั้งหมดในคอลัมน์ตรงกลาง (ถ้ามี) */
-.table th,
-.table td {
-  vertical-align: middle; /* จัดให้ข้อความอยู่กึ่งกลางแนวตั้ง */
-}
-
-/* จัดตำแหน่งข้อความในส่วนหัวตารางให้กึ่งกลาง (ถ้าต้องการ) */
-.table thead th {
+.table th:nth-child(5),
+.table td:nth-child(5) {
+  width: 10%; /* Type */
   text-align: center;
+}
+
+.table th:nth-child(6),
+.table td:nth-child(6) {
+  width: 15%; /* Action */
+  text-align: center;
+}
+
+/* ส่วนตกแต่งตารางประเภทอาหารโดยเฉพาะ */
+.category-table-responsive {
+  margin-top: 30px;
+}
+
+.category-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.category-table thead th {
+  background: linear-gradient(to right, #00bcd4, #26c6da);
+  color: white;
+  padding: 15px 20px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.category-table tbody tr {
+  background-color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.category-table tbody tr:hover {
+  background-color: #e0f7fa;
+  box-shadow: inset 5px 0 0 #4dd0e1;
+  transform: scale(1.01);
+  cursor: pointer;
+}
+
+.category-table td {
+  padding: 12px 20px;
+  border-bottom: 1px solid #e0f7fa;
+  color: #34495e;
+  vertical-align: middle;
+}
+
+/* กำหนดความกว้างเฉพาะสำหรับแต่ละคอลัมน์ของตารางประเภทอาหาร */
+.category-table th:nth-child(1),
+.category-table td:nth-child(1) {
+  width: 15%; /* ID */
+  text-align: center;
+}
+
+.category-table th:nth-child(2),
+.category-table td:nth-child(2) {
+  width: 55%; /* Name */
+  text-align: left;
+  font-weight: bold;
+}
+
+.category-table th:nth-child(3),
+.category-table td:nth-child(3) {
+  width: 30%; /* Action */
+  text-align: center;
+}
+
+.category-table .btn-edit,
+.category-table .btn-delete {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  margin: 0 5px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4caf50;
+  color: white;
+}
+
+.category-table .btn-edit:hover,
+.category-table .btn-delete:hover {
+  background-color: #43a047;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.zoom-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็นรูปมือเพื่อบอกว่าคลิกได้ */
+}
+
+.zoom-container img {
+  transition: transform 0.3s ease, border 0.3s ease; /* เพิ่ม transition ให้การขยายนุ่มนวลขึ้น */
+  cursor: zoom-in; /* เปลี่ยนเคอร์เซอร์เป็นรูปแว่นขยายเมื่อชี้ */
+}
+
+.zoom-container img.zoomed {
+  transform: scale(3); /* ขยายรูปภาพ 3 เท่า */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(3);
+  z-index: 1000;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* เพิ่มเงาให้รูปภาพที่ขยาย */
+  cursor: zoom-out; /* เปลี่ยนเคอร์เซอร์เป็นรูปแว่นขยายติดลบเมื่อซูม */
+}
+
+/* Overlay for modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* สีดำโปร่งแสง */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0; /* ซ่อนไว้ตอนแรก */
+  visibility: hidden; /* ซ่อนไว้ตอนแรก */
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Show modal */
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal content (the zoomed image) */
+.modal-content {
+  max-width: 90%; /* กำหนดขนาดสูงสุดของรูปภาพใน modal */
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  object-fit: contain; /* ให้รูปภาพพอดีกับขนาด modal โดยไม่ถูกตัด */
+  cursor: zoom-out; /* เคอร์เซอร์เป็นแว่นขยายติดลบเมื่ออยู่ใน modal */
+}
+
+/* Cursor for zoomable images */
+.zoom-thumbnail {
+  cursor: zoom-in; /* เคอร์เซอร์เป็นแว่นขยายเมื่อชี้ที่รูปภาพในตาราง */
+  transition: transform 0.2s ease;
+}
+
+.zoom-thumbnail:hover {
+  transform: scale(1.05); /* ขยายเล็กน้อยเมื่อ hover */
+}
+
+/* Styling for the detail modal */
+.food-detail-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.food-detail-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.food-detail-content {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  transform: translateY(-50px);
+  transition: transform 0.4s ease-out;
+}
+
+.food-detail-modal.active .food-detail-content {
+  transform: translateY(0);
+}
+
+.food-detail-content h3 {
+  color: #26c6da;
+  margin-top: 0;
+  font-size: 2em;
+}
+
+.food-detail-content p {
+  color: #34495e;
+  line-height: 1.8;
+}
+
+.search-container {
+  display: flex;
+  justify-content: flex-end; /* จัดช่องค้นหาไปทางขวา */
+  margin-bottom: 20px;
+}
+
+#searchInput {
+  width: 300px;
+  padding: 10px 15px;
+  border: 1px solid #b2ebf2;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #34495e;
+  transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+  outline: none;
+  border-color: #00bcd4;
+  box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
 }
 
 footer {

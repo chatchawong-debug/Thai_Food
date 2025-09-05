@@ -1,11 +1,17 @@
 <!-- /views/foodviwes/food.ejs -->
 
 <%- include('../partials/header') %>
-<div class="container">
+
+<div class="container mt-4">
   <div class="py-3">
     <h2><%= title %></h2>
-    <div class="table-responsive">
-      <table class="table">
+    <div >
+      <div class="table-responsive, input-group mb-3" style="max-width: 400px;">
+        <a href="/food/add" class="btn btn-primary">add Food</a>
+        <input type="text" id="search-input" class="form-control" placeholder="ค้นหาชื่ออาหาร..." aria-label="ค้นหาชื่ออาหาร" aria-describedby="button-addon2">
+      </div>
+      <br />
+      <table class="table" id="food-table">
         <% if (food.length > 0) { %>
         <thead>
           <tr>
@@ -22,13 +28,31 @@
           <% food.forEach((food, index) => { %>
           <tr>
             <th scope="row"><%= food.id %></th>
-            <td>รูปภาพ</td>
-            <td><%= food.name %></td>
+            <td>
+              <% if (food.image && food.image.startsWith('http')) { %>
+              <img
+                src="<%= food.image %>"
+                alt="<%= food.name %>"
+                style="width: 100px; height: auto"
+                class="zoom-thumbnail"
+              />
+              <% } else { %>
+              <img
+                src="/images/<%= food.image %>"
+                alt="<%= food.name %>"
+                style="width: 100px; height: auto"
+                class="zoom-thumbnail"
+              />
+              <% } %>
+            </td>
+            <td>
+              <a href="#" class="food-name-link" data-food='<%= JSON.stringify(food) %>'><%= food.name %></a>
+            </td>
             <td><%= food.des %></td>
             <td><%= food.type_id %></td>
             <td>
-              <a href="<%= food.id %>" class="btn btn-sm btn-success">Edit</a>
-              <a href="<%= food.id %>" onclick="return confirm('delete this list?');"class="btn btn-sm btn-danger">Delete</a>
+              <a href="/food/edit/<%= food.id %>" class="btn btn-sm btn-success">Edit</a>
+              <a href="/food/delete/<%= food.id %>"onclick="return confirm('want to delete this list?');"class="btn btn-sm btn-danger">Delete</a>
             </td>
           </tr>
           <% }); %>

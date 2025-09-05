@@ -2,9 +2,13 @@
 <%- include('../partials/header') %>
 <div class="container mt-5">
   <h2><%= title %></h1>
-
-  <div class="table-responsive">
-    <table class="table">
+  <br>
+  <div class="input-group mb-3" style="max-width: 400px;">
+    <a href="/type/add" class="btn btn-primary">add Type</a>
+    <input type="text" id="type-search-input" class="form-control" placeholder="ค้นหาประเภทอาหาร..." aria-label="ค้นหาประเภทอาหาร" aria-describedby="button-addon2">
+  </div>
+  <div class="category-table-responsive">
+    <table class="category-table" id="type-table">
       <thead>
         <tr>
           <th>ID</th>
@@ -18,8 +22,7 @@
           <td><%= type.type_id %></td>
           <td><%= type.name %></td>
           <td>
-            <a href="<%= type.type_id %>" class="btn btn-sm btn-success">Edit</a>
-            <a href="<%= type.type_id %>" onclick="return confirm('delete this list?');"class="btn btn-sm btn-danger">Delete</a>
+            <a href="/type/edit/<%= type.type_id %>" class="btn btn-sm btn-success">Edit</a>
           </td>
         </tr>
         <% }); %> <% } else { %>

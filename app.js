@@ -1,4 +1,5 @@
 const express = require("express");
+const fileUpload = require('express-fileupload');
 const path = require("path");
 const app = express();
 const mysql = require('mysql');
@@ -10,6 +11,9 @@ const typeRoutes = require("./routes/typeRoutes");
 app.set("views", __dirname + "/views"); // set express to look inthis folder to render our view
 app.set("view engine", "ejs"); // configure template engine
 app.use(express.static(path.join(__dirname, "public")));
+app.use(fileUpload({createParentPath: true }));
+app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true })); // สำหรับข้อมูลจากฟอร์ม HTML
 
 // routes for the app
 app.use("/", homeRoutes);
@@ -32,7 +36,7 @@ db.connect((err) => {
     throw err;
   }
   // ถ้าเชื่อมต่อสำเร็จ จะแสดงข้อความใน console
-  console.log("connect to database");
+  console.log("connect to database success");
 });
 
 // กำหนดให้ db เป็นตัวแปร global
