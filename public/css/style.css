@@ -422,6 +422,40 @@ main {
   box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.2);
 }
 
+/* สำหรับจัดกึ่งกลางเนื้อหาใน main */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.slideshow-container {
+    position: relative; /* สำคัญ: เพื่อให้รูปภาพซ้อนทับกันได้ */
+    width: 800px; /* กำหนดความกว้างของคอนเทนเนอร์ */
+    height: 450px; /* กำหนดความสูงของคอนเทนเนอร์ (ปรับตามอัตราส่วนรูปภาพ) */
+    margin: 26px;
+    border: 5px solid #b2ebf2; /* เพิ่มขอบรอบรูป */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* เพิ่มเงาให้รูปดูมีมิติ */
+    overflow: hidden; /* ซ่อนส่วนเกินของรูปภาพ */
+    border-radius: 8px; /* ขอบมน */
+}
+
+.slideshow-image {
+    position: absolute; /* รูปภาพซ้อนทับกัน */
+    top: 0;
+    left: 0;
+    width: 100%; /* ขนาดเต็มคอนเทนเนอร์ */
+    height: 100%; /* ขนาดเต็มคอนเทนเนอร์ */
+    object-fit: cover; /* ครอบคลุมพื้นที่และตัดส่วนเกิน */
+    opacity: 0; /* ซ่อนรูปภาพทั้งหมดตอนแรก */
+    transition: opacity 1.5s ease-in-out; /* ระยะเวลาการเปลี่ยนภาพ */
+}
+
+.slideshow-image.active {
+    opacity: 1; /* แสดงรูปภาพที่ active */
+}
+
 footer {
   background: linear-gradient(
     to right,

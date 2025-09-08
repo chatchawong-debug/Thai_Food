@@ -1,4 +1,41 @@
 <!-- /views/index.ejs -->
 <%- include('../views/partials/header') %>
-<h2><%= title %></h2>
+
+<main class="main-content">
+  <h2><%= title %></h2>
+  <div class="slideshow-container">
+    <% homeImages.forEach((imageUrl, index) => { %>
+    <img
+      src="<%= imageUrl %>"
+      alt="Delicious Thai Food"
+      class="slideshow-image <%= index === 0 ? 'active' : '' %>"
+    />
+    <% }); %>
+  </div>
+</main>
+
 <%- include('../views/partials/footer') %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const slideshowImages = document.querySelectorAll(".slideshow-image");
+    if (slideshowImages.length > 0) {
+      let currentIndex = 0;
+
+      function showNextImage() {
+        // ลบคลาส 'active' ออกจากรูปภาพปัจจุบัน
+        slideshowImages[currentIndex].classList.remove("active");
+
+        // ไปยังรูปภาพถัดไป หรือวนกลับไปรูปแรก
+        currentIndex = (currentIndex + 1) % slideshowImages.length;
+
+        // เพิ่มคลาส 'active' ให้กับรูปภาพถัดไป
+        slideshowImages[currentIndex].classList.add("active");
+      }
+
+      // ตั้งเวลาให้เปลี่ยนรูปภาพทุก 4 วินาที (4000 มิลลิวินาที)
+      // ระยะเวลาการเปลี่ยนภาพใน CSS คือ 1.5s ดังนั้น ควรตั้งเวลาที่นานกว่านั้น
+      setInterval(showNextImage, 4000);
+    }
+  });
+</script>

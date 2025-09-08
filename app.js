@@ -14,6 +14,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(fileUpload({createParentPath: true }));
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true })); // สำหรับข้อมูลจากฟอร์ม HTML
+app.use(express.static(path.join(__dirname, 'public')));
 
 // routes for the app
 app.use("/", homeRoutes);
@@ -36,7 +37,7 @@ db.connect((err) => {
     throw err;
   }
   // ถ้าเชื่อมต่อสำเร็จ จะแสดงข้อความใน console
-  console.log("connect to database success");
+  console.log("connect db success :)");
 });
 
 // กำหนดให้ db เป็นตัวแปร global
