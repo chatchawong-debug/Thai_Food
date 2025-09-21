@@ -39,12 +39,12 @@ exports.addFoodPage = (req, res) => {
   });
 };
 
-/////////////add food Item//////////////
+////// add food Item //////
 exports.addFoodItem = (req, res) => {
   if (!req.files) {
     return res.status(400).send("No files were uploaded.");
   }
-  // สร้ํางรหัส เช่น ใช้เวลํา timestamp
+  // สร้างรหัส เช่น ใช้เวลา timestamp
   let code = Date.now(); // เช่น 1693401234567
   let message = "";
   let foodname = req.body.name;
@@ -53,7 +53,7 @@ exports.addFoodItem = (req, res) => {
   let uploadedFile = req.files.image;
   let imageName = uploadedFile.name;
   let fileExtension = uploadedFile.mimetype.split("/")[1];
-  // สร้ํางชื่อไฟล์ = รหัส + _ + ชื่ออําหําร + .นํามสกุล เช่น 1693401234567ส้มต ํา.jpg
+  // สร้างชื่อไฟล์ = รหัส + _ + ชื่ออาหาร + .นามสกุล เช่น 1693401234567ส้มตำ.jpg
   imageName = `${code}_${foodname}.${fileExtension}`;
 
   let usernameQuery = "SELECT * FROM foodthai WHERE name = ?";
@@ -63,10 +63,10 @@ exports.addFoodItem = (req, res) => {
       return res.status(500).send(err);
     }
     if (result.length > 0) {
-      // มีข้อมูลซ้ํา
+      // มีข้อมูลซ้า
       message = "|Username already exists";
       res.render("foodviews/addFood.ejs", {
-        title: "Welcome to ThaiFood | Add a new ThaiFood",
+        title: "Welcome to ThaiFood | Add New Food",
         message,
       });
     } else {
@@ -81,7 +81,6 @@ exports.addFoodItem = (req, res) => {
           if (err) {
             return res.status(500).send(err);
           }
-
           // send the food's details to the database
 
           let query = "INSERT INTO foodthai(name, des, type_id,image) VALUES(?, ?, ?, ?)";
@@ -190,6 +189,7 @@ exports.editFoodItem = (req, res) => {
   }
 };
 
+////// delete food item //////
 exports.deleteFoodItem = (req, res) => {
   let foodId = req.params.id;
   let getImageQuery = "SELECT image from foodthai WHERE id = ?";

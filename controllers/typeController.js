@@ -2,7 +2,6 @@
 exports.getTypePage = (req, res) => {
   // คำสั่ง SQL ดึงข้อมูลจากตาราง 'foodtype'
   let query = "SELECT * FROM foodtype ORDER BY type_id ASC";
-
   db.query(query, (err, result) => {
     if (err) {
       console.error("Error fetching food types: ", err);
@@ -17,6 +16,7 @@ exports.getTypePage = (req, res) => {
   });
 };
 
+////// add type page //////
 exports.addTypePage = (req, res) => {
   res.render("foodviews/addType.ejs", {
     title: "Add Type Food",
@@ -24,7 +24,7 @@ exports.addTypePage = (req, res) => {
   });
 };
 
-/////////////add type Item//////////////
+////// add type item //////
 exports.addTypeItem = (req, res) => {
   // ดึงชื่อประเภทจาก body ของ request
   let typeName = req.body.name;
@@ -37,7 +37,6 @@ exports.addTypeItem = (req, res) => {
       console.error(err);
       return res.status(500).send(err);
     }
-
     if (result.length > 0) {
       // ถ้ามีชื่อประเภทซ้ำ
       message = "ชื่อประเภทนี้มีอยู่แล้ว";
@@ -60,7 +59,7 @@ exports.addTypeItem = (req, res) => {
   });
 };
 
-
+////// edit type page //////
 exports.editTypePage = (req, res) => {
   // ดึง ID ของประเภทอาหารจาก URL
   let typeId = req.params.id;
@@ -85,6 +84,7 @@ exports.editTypePage = (req, res) => {
   });
 };
 
+////// edit type item //////
 exports.editTypeItem = (req, res) => {
   // ดึง ID ของประเภทจาก URL และชื่อใหม่จาก body ของ request
   let typeId = req.params.id;
